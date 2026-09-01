@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pre-Audit Homework — Personal Brand Photo Audit</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0b;
+      --bg-card: #131316;
+      --bg-elevated: #1a1a1f;
+      --text: #f5f5f7;
+      --text-muted: #8a8a93;
+      --text-dim: #5c5c66;
+      --accent: #c9a96e;
+      --accent-hover: #d4b87e;
+      --accent-dim: rgba(201, 169, 110, 0.1);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.15);
+      --success: #38a169;
+      --radius: 16px;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 16px 24px;
+      background: rgba(10, 10, 11, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 640px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-logo {
+      font-weight: 700; font-size: 16px; letter-spacing: -0.02em;
+      color: var(--text); text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
+
+    /* ===== HERO ===== */
+    .homework-hero {
+      padding: 120px 24px 60px; text-align: center;
+    }
+    .homework-hero h1 {
+      font-size: clamp(28px, 6vw, 40px); font-weight: 800;
+      letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 16px;
+    }
+    .homework-hero h1 .accent { color: var(--accent); }
+    .homework-hero p {
+      font-size: 17px; color: var(--text-muted);
+      max-width: 480px; margin: 0 auto;
+    }
+
+    /* ===== PROGRESS BAR ===== */
+    .progress-bar {
+      max-width: 480px; margin: 40px auto 0;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 100px; padding: 16px 24px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .progress-bar .steps {
+      display: flex; gap: 8px; flex: 1;
+    }
+    .progress-dot {
+      width: 24px; height: 24px; border-radius: 50%;
+      border: 2px solid var(--border); display: flex;
+      align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 600; color: var(--text-dim);
+      transition: all 0.2s;
+    }
+    .progress-dot.active {
+      background: var(--accent); border-color: var(--accent);
+      color: #0a0a0b;
+    }
+    .progress-dot.done {
+      background: rgba(56, 161, 105, 0.2); border-color: var(--success);
+      color: var(--success);
+    }
+    .progress-label {
+      font-size: 13px; color: var(--text-dim); white-space: nowrap;
+    }
+
+    /* ===== SECTION ===== */
+    section { padding: 60px 24px; }
+    .section-inner { max-width: 640px; margin: 0 auto; }
+
+    .homework-step {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 32px; margin-bottom: 24px;
+    }
+    .homework-step.completed { border-color: rgba(56, 161, 105, 0.2); }
+    .step-header {
+      display: flex; align-items: center; gap: 16px; margin-bottom: 20px;
+    }
+    .step-number {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--accent-dim); border: 1px solid rgba(201, 169, 110, 0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 700; color: var(--accent);
+      flex-shrink: 0;
+    }
+    .homework-step.completed .step-number {
+      background: rgba(56, 161, 105, 0.15); border-color: rgba(56, 161, 105, 0.3);
+      color: var(--success);
+    }
+    .step-header h2 {
+      font-size: 20px; font-weight: 700; letter-spacing: -0.02em;
+    }
+    .step-header p {
+      font-size: 14px; color: var(--text-dim); margin-top: 2px;
+    }
+    .step-body { margin-left: 52px; }
+    .step-body p {
+      font-size: 15px; color: var(--text-muted); margin-bottom: 16px;
+    }
+
+    /* ===== FORM ELEMENTS ===== */
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block; font-size: 13px; font-weight: 500;
+      color: var(--text-muted); margin-bottom: 6px;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%; padding: 14px 16px; font-size: 15px;
+      font-family: inherit; color: var(--text);
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 12px; transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--accent);
+    }
+    .form-textarea { resize: vertical; min-height: 100px; }
+    .form-select { appearance: none; cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238a8a93' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 16px center;
+    }
+
+    .checkbox-group {
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .checkbox-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 14px 16px; background: var(--bg);
+      border: 1px solid var(--border); border-radius: 12px;
+      cursor: pointer; transition: border-color 0.2s;
+    }
+    .checkbox-item:hover { border-color: var(--border-hover); }
+    .checkbox-item.checked { border-color: var(--accent); background: var(--accent-dim); }
+    .checkbox-box {
+      width: 20px; height: 20px; border-radius: 6px;
+      border: 2px solid var(--border); flex-shrink: 0;
+      margin-top: 1px; transition: all 0.2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .checkbox-item.checked .checkbox-box {
+      background: var(--accent); border-color: var(--accent);
+    }
+    .checkbox-item.checked .checkbox-box::after {
+      content: '✓'; color: #0a0a0b; font-size: 12px; font-weight: 700;
+    }
+    .checkbox-label {
+      font-size: 15px; color: var(--text); line-height: 1.4;
+    }
+    .checkbox-label .desc {
+      font-size: 13px; color: var(--text-dim); margin-top: 4px;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 14px 28px; font-size: 15px; font-weight: 600;
+      border: none; border-radius: 100px; cursor: pointer;
+      text-decoration: none; transition: all 0.25s ease;
+    }
+    .btn-primary {
+      background: var(--accent); color: #0a0a0b;
+    }
+    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .btn-secondary {
+      background: transparent; color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover { border-color: var(--border-hover); color: var(--text); }
+
+    /* ===== INFO CARD ===== */
+    .info-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px; margin-bottom: 24px;
+    }
+    .info-card h3 {
+      font-size: 16px; font-weight: 600; margin-bottom: 12px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .info-card p {
+      font-size: 14px; color: var(--text-muted); margin-bottom: 8px;
+    }
+    .info-card ul {
+      list-style: none; padding-left: 0;
+    }
+    .info-card li {
+      font-size: 14px; color: var(--text-muted); padding: 4px 0;
+      display: flex; align-items: start; gap: 8px;
+    }
+
+    /* ===== SUCCESS ===== */
+    .success-msg {
+      display: none; text-align: center; padding: 40px 24px;
+    }
+    .success-msg.show { display: block; }
+    .success-msg .check {
+      width: 64px; height: 64px; margin: 0 auto 20px;
+      border-radius: 50%; background: rgba(56, 161, 105, 0.15);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .success-msg .check svg { width: 32px; height: 32px; color: var(--success); }
+    .success-msg h2 { font-size: 24px; font-weight: 700; margin-bottom: 12px; }
+    .success-msg p { font-size: 16px; color: var(--text-muted); max-width: 400px; margin: 0 auto; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      padding: 40px 24px; text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    footer p { font-size: 13px; color: var(--text-dim); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Personal<span>Brand</span> Shoots</a>
+    <span style="font-size: 13px; color: var(--text-dim);">Pre-Audit Homework</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="homework-hero">
+  <h1>You're booked. Now let's <span class="accent">get you ready.</span></h1>
+  <p>Before your audit call, we need you to complete 3 quick steps. This takes about 10-15 minutes and ensures your call is maximally useful — we'll already know your goals, your style, and your current setup when we get on the phone.</p>
+
+  <div class="progress-bar">
+    <div class="steps">
+      <div class="progress-dot" id="dot-1">1</div>
+      <div class="progress-dot" id="dot-2">2</div>
+      <div class="progress-dot" id="dot-3">3</div>
+    </div>
+    <div class="progress-label" id="progress-label">0 of 3 complete</div>
+  </div>
+</div>
+
+<!-- HOMEWORK STEPS -->
+<section>
+  <div class="section-inner">
+
+    <!-- STEP 1: Goals & Platforms -->
+    <div class="homework-step" id="step-1">
+      <div class="step-header">
+        <div class="step-number">1</div>
+        <div>
+          <h2>Your Goals & Platforms</h2>
+          <p>Tell us what you're going for and where these photos will live.</p>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="form-group">
+          <label>What's your primary goal for this audit?</label>
+          <select class="form-select" id="goal" required>
+            <option value="" disabled selected>Choose your #1 goal</option>
+            <option value="dating">Get more matches / better dating results</option>
+            <option value="instagram">Build a strong Instagram presence</option>
+            <option value="linkedin">Look professional on LinkedIn</option>
+            <option value="founder">Build a founder / personal brand</option>
+            <option value="all">Fix everything — all platforms</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Which platforms are you active on? (Check all that apply)</label>
+          <div class="checkbox-group" id="platforms">
+            <div class="checkbox-item" onclick="toggleCheckbox(this)">
+              <div class="checkbox-box"></div>
+              <div class="checkbox-label">Instagram<div class="desc">Feed, stories, reels</div></div>
+            </div>
+            <div class="checkbox-item" onclick="toggleCheckbox(this)">
+              <div class="checkbox-box"></div>
+              <div class="checkbox-label">Dating Apps<div class="desc">Tinder, Hinge, Bumble, etc.</div></div>
+            </div>
+            <div class="checkbox-item" onclick="toggleCheckbox(this)">
+              <div class="checkbox-box"></div>
+              <div class="checkbox-label">LinkedIn<div class="desc">Professional headshots + brand</div></div>
+            </div>
+            <div class="checkbox-item" onclick="toggleCheckbox(this)">
+              <div class="checkbox-box"></div>
+              <div class="checkbox-label">TikTok / YouTube<div class="desc">Video content platforms</div></div>
+            </div>
+            <div class="checkbox-item" onclick="toggleCheckbox(this)">
+              <div class="checkbox-box"></div>
+              <div class="checkbox-label">Personal Website<div class="desc">Portfolio or founder site</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Links to your profiles (so we can review them before the call)</label>
+          <textarea class="form-textarea" id="profile-links" placeholder="Paste your Instagram URL, dating profile screenshot links, LinkedIn URL, etc."></textarea>
+        </div>
+        <button class="btn btn-primary" onclick="completeStep(1)" style="margin-top: 8px;">
+          Save & Continue →
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 2: Style & Archetype -->
+    <div class="homework-step" id="step-2" style="opacity: 0.5; pointer-events: none;">
+      <div class="step-header">
+        <div class="step-number">2</div>
+        <div>
+          <h2>Your Style & Vibe</h2>
+          <p>Help us figure out your archetype before the call.</p>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="info-card">
+          <h3>🎭 What's an archetype?</h3>
+          <p>Your archetype is the identity that drives every visual decision — what you wear, where you shoot, how you pose, what your bio says. Before the call, we want your honest self-assessment so we can come prepared with a recommendation.</p>
+        </div>
+        <div class="form-group">
+          <label>Which of these sounds most like the guy you want to look like online?</label>
+          <select class="form-select" id="archetype" required>
+            <option value="" disabled selected>Pick the closest fit</option>
+            <option value="athlete">The Athlete — fitness, discipline, physical energy</option>
+            <option value="creative">The Creative — artistic, expressive, style-forward</option>
+            <option value="founder">The Founder — ambitious, sharp, building something</option>
+            <option value="lifestyle">The Lifestyle Guy — curated, social, has his life together</option>
+            <option value="professional">The Professional — polished, credible, trustworthy</option>
+            <option value="edgy">The Edgy One — bold, confident, doesn't follow rules</option>
+            <option value="notsure">Not sure — that's why I'm doing the audit</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>How would you describe your current style? (Be honest)</label>
+          <textarea class="form-textarea" id="style-desc" placeholder="e.g. I mostly wear plain t-shirts and jeans, I have a few nice jackets I never wear, I don't really know what my style is..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Link 3-5 photos of guys whose online presence you admire</label>
+          <textarea class="form-textarea" id="inspiration" placeholder="Paste Instagram handles or links to photos you wish you could look like. These help us understand the vibe you're going for."></textarea>
+        </div>
+        <div class="form-group">
+          <label>What do you think is your best physical feature?</label>
+          <input type="text" class="form-input" id="best-feature" placeholder="e.g. my jawline, my shoulders, my eyes, my hair...">
+        </div>
+        <div class="form-group">
+          <label>What do you feel most self-conscious about in photos?</label>
+          <textarea class="form-textarea" id="insecurity" placeholder="e.g. I think my smile looks forced, I don't know what to do with my hands, I feel like I look stiff..."></textarea>
+        </div>
+        <button class="btn btn-primary" onclick="completeStep(2)" style="margin-top: 8px;">
+          Save & Continue →
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Logistics & Pre-Call Checklist -->
+    <div class="homework-step" id="step-3" style="opacity: 0.5; pointer-events: none;">
+      <div class="step-header">
+        <div class="step-number">3</div>
+        <div>
+          <h2>Pre-Call Checklist</h2>
+          <p>Read this before the call so we don't waste time on basics.</p>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="info-card">
+          <h3>📋 How the audit call works</h3>
+          <ul>
+            <li>✅ 30 minutes, via phone or video (your choice)</li>
+            <li>✅ We review your photos across every platform live</li>
+            <li>✅ We define your archetype together</li>
+            <li>✅ We map out your looks and give you a posting plan</li>
+            <li>✅ You leave with a written audit report within 24h after the call</li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <h3>📖 Before the call, please review these 3 concepts</h3>
+          <p><strong>1. Looks, not photos.</strong> The unit of a personal brand is the look: one location × one outfit. Three planned looks gives you a month of content. Fifty pics from one afternoon gives you one day. We'll explain why this matters on the call.</p>
+          <p style="margin-top: 12px;"><strong>2. Direction beats genetics.</strong> Nobody is photogenic unprompted. Models get directed. Every pose and angle is decided before the shoot. Awkwardness is a planning failure, not a face failure.</p>
+          <p style="margin-top: 12px;"><strong>3. The profile is a system.</strong> Your photos work together or they don't work at all. The order matters. The bio matters. The first photo matters most. We'll rebuild your whole profile as one system on the call.</p>
+        </div>
+
+        <div class="form-group">
+          <label>Confirm you've read and understood the 3 concepts above</label>
+          <div class="checkbox-group">
+            <div class="checkbox-item" onclick="toggleCheckbox(this)">
+              <div class="checkbox-box"></div>
+              <div class="checkbox-label">I understand "looks, not photos" — the unit is location × outfit</div>
+            </div>
+            <div class="checkbox-item" onclick="toggleCheckbox(this)">
+              <div class="checkbox-box"></div>
+              <div class="checkbox-label">I understand that direction beats genetics — models get directed, I will too</div>
+            </div>
+            <div class="checkbox-item" onclick="toggleCheckbox(this)">
+              <div class="checkbox-box"></div>
+              <div class="checkbox-label">I understand the profile is a system — order, bio, and first photo all matter</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Anything else you want us to know before the call?</label>
+          <textarea class="form-textarea" id="extra-notes" placeholder="Questions, concerns, specific situations, anything else that would help us prepare for your audit..."></textarea>
+        </div>
+
+        <button class="btn btn-primary" onclick="submitHomework()" id="submit-homework-btn" style="margin-top: 8px; width: 100%;">
+          Submit Homework & Confirm My Call →
+        </button>
+      </div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="success-msg" id="success-msg">
+      <div class="check">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.2 3.2 6.8-6.8a1 1 0 011.4 0z"/></svg>
+      </div>
+      <h2>You're all set. See you on the call.</h2>
+      <p>We've received your homework and we'll be fully prepared. Check your email for the calendar invite and call details. Talk soon.</p>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p>Personal Brand Shoots · Montreal, QC</p>
+</footer>
+
+<script>
+  let currentStep = 0;
+
+  function toggleCheckbox(el) {
+    el.classList.toggle('checked');
+  }
+
+  function completeStep(step) {
+    // Mark step as completed
+    document.getElementById('step-' + step).classList.add('completed');
+
+    // Update progress dots
+    document.getElementById('dot-' + step).classList.remove('active');
+    document.getElementById('dot-' + step).classList.add('done');
+    document.getElementById('dot-' + step).textContent = '✓';
+
+    // Unlock next step
+    if (step < 3) {
+      const next = document.getElementById('step-' + (step + 1));
+      next.style.opacity = '1';
+      next.style.pointerEvents = 'auto';
+      document.getElementById('dot-' + (step + 1)).classList.add('active');
+      next.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    currentStep = step;
+    document.getElementById('progress-label').textContent = step + ' of 3 complete';
+  }
+
+  function submitHomework() {
+    const btn = document.getElementById('submit-homework-btn');
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+
+    // Collect all homework data
+    const data = {
+      step1: {
+        goal: document.getElementById('goal').value,
+        platforms: Array.from(document.querySelectorAll('#platforms .checkbox-item.checked'))
+          .map(el => el.querySelector('.checkbox-label').childNodes[0].textContent.trim()),
+        profileLinks: document.getElementById('profile-links').value,
+      },
+      step2: {
+        archetype: document.getElementById('archetype').value,
+        styleDesc: document.getElementById('style-desc').value,
+        inspiration: document.getElementById('inspiration').value,
+        bestFeature: document.getElementById('best-feature').value,
+        insecurity: document.getElementById('insecurity').value,
+      },
+      step3: {
+        conceptsUnderstood: document.querySelectorAll('#step-3 .checkbox-item.checked').length,
+        extraNotes: document.getElementById('extra-notes').value,
+      },
+      application: JSON.parse(sessionStorage.getItem('audit-application') || '{}'),
+      submittedAt: new Date().toISOString(),
+    };
+
+    // Submit to serverless endpoint
+    fetch('/api/homework', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).catch(() => {}).finally(() => {
+      // Hide all steps, show success
+      document.querySelectorAll('.homework-step').forEach(el => el.style.display = 'none');
+      document.getElementById('success-msg').classList.add('show');
+      document.getElementById('progress-label').textContent = '3 of 3 complete';
+      document.querySelectorAll('.progress-dot').forEach(dot => {
+        dot.classList.remove('active');
+        dot.classList.add('done');
+        dot.textContent = '✓';
+      });
+    });
+  }
+
+  // Initialize first step as active
+  document.getElementById('dot-1').classList.add('active');
+</script>
+
+</body>
+</html>
