@@ -26,7 +26,6 @@
       --accent-dim: rgba(201, 169, 110, 0.1);
       --border: rgba(255, 255, 255, 0.08);
       --border-hover: rgba(255, 255, 255, 0.15);
-      --danger: #e53e3e;
       --success: #38a169;
       --radius: 16px;
       --max-w: 640px;
@@ -163,7 +162,7 @@
     .problem-card h3 .icon { font-size: 20px; }
     .problem-card p { font-size: 15px; color: var(--text-muted); }
 
-    /* ===== SOLUTION ===== */
+    /* ===== SOLUTION / WHAT'S INCLUDED ===== */
     .solution-list {
       display: flex; flex-direction: column; gap: 0;
       counter-reset: step;
@@ -181,6 +180,27 @@
     }
     .solution-step h3 { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
     .solution-step p { font-size: 15px; color: var(--text-muted); }
+
+    /* ===== AUDIT VALUE GRID ===== */
+    .value-section { background: var(--bg-card); }
+    .value-grid {
+      display: grid; grid-template-columns: 1fr; gap: 12px;
+      margin-top: 32px;
+    }
+    .value-item {
+      display: flex; gap: 16px; padding: 24px;
+      background: var(--bg-elevated); border: 1px solid var(--border);
+      border-radius: 14px; transition: border-color 0.2s;
+    }
+    .value-item:hover { border-color: var(--border-hover); }
+    .value-icon {
+      min-width: 44px; height: 44px; border-radius: 12px;
+      background: var(--accent-dim); display: flex;
+      align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .value-content h4 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+    .value-content p { font-size: 14px; color: var(--text-muted); line-height: 1.5; }
 
     /* ===== AUDIT FORM ===== */
     .audit-section {
@@ -244,30 +264,6 @@
     .form-success h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
     .form-success p { font-size: 15px; color: var(--text-muted); }
 
-    /* ===== VALUE STACK ===== */
-    .stack-section { background: var(--bg-card); }
-    .stack-grid {
-      display: grid; grid-template-columns: 1fr; gap: 12px;
-    }
-    .stack-item {
-      display: flex; gap: 16px; padding: 20px;
-      background: var(--bg-elevated); border: 1px solid var(--border);
-      border-radius: 14px; transition: border-color 0.2s;
-    }
-    .stack-item:hover { border-color: var(--border-hover); }
-    .stack-icon {
-      min-width: 40px; height: 40px; border-radius: 10px;
-      background: var(--accent-dim); display: flex;
-      align-items: center; justify-content: center;
-      font-size: 18px;
-    }
-    .stack-content h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
-    .stack-content p { font-size: 14px; color: var(--text-muted); }
-    .stack-value {
-      margin-left: auto; font-size: 13px; font-weight: 600;
-      color: var(--accent); white-space: nowrap;
-    }
-
     /* ===== TESTIMONIAL / SOCIAL PROOF ===== */
     .social-proof { text-align: center; }
     .proof-stats {
@@ -303,7 +299,7 @@
       max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
       font-size: 15px; color: var(--text-muted); line-height: 1.7;
     }
-    .faq-item.open .faq-a { max-height: 200px; padding-bottom: 20px; }
+    .faq-item.open .faq-a { max-height: 300px; padding-bottom: 20px; }
 
     /* ===== FINAL CTA ===== */
     .final-cta {
@@ -329,7 +325,7 @@
     /* ===== RESPONSIVE ===== */
     @media (min-width: 640px) {
       .problem-grid { grid-template-columns: 1fr 1fr; }
-      .stack-grid { grid-template-columns: 1fr 1fr; }
+      .value-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 480px) {
       .hero-trust { gap: 16px; }
@@ -343,7 +339,7 @@
 <nav>
   <div class="nav-inner">
     <a href="#" class="nav-logo">Personal<span>Brand</span> Shoots</a>
-    <a href="#audit" class="nav-cta">Free Audit →</a>
+    <a href="#audit" class="nav-cta">Get My Audit →</a>
   </div>
 </nav>
 
@@ -352,7 +348,7 @@
   <div class="hero-content">
     <div class="hero-badge">Free Personal Brand Photo Audit</div>
     <h1>Look like the <span class="accent">main character</span> online — not a folder of random selfies.</h1>
-    <p>Get a free audit of your current photos. We'll show you exactly why they're underperforming and the system that fixes your entire online presence in one afternoon.</p>
+    <p>Get a free audit of your current photos. We'll show you exactly why they're underperforming and give you a custom action plan to fix your entire online presence.</p>
     <div class="hero-cta-group">
       <a href="#audit" class="btn-primary">Get My Free Audit →</a>
       <a href="#how" class="btn-secondary">How it works ↓</a>
@@ -360,7 +356,7 @@
     <div class="hero-trust">
       <div class="trust-item">
         <svg viewBox="0 0 20 20" fill="currentColor"><path d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.2 3.2 6.8-6.8a1 1 0 011.4 0z"/></svg>
-        100% Free, No Catch
+        100% Free
       </div>
       <div class="trust-item">
         <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.5 13.5l-3-3 1.4-1.4 1.6 1.6 4.6-4.6 1.4 1.4z"/></svg>
@@ -395,139 +391,133 @@
       </div>
       <div class="problem-card">
         <h3><span class="icon">🗂️</span> The folder of pics</h3>
-        <p>A photographer charged you for a session, handed you a folder, and said "good luck." You're back where you started — with prettier raw material and no system.</p>
+        <p>A photographer handed you a folder and said "good luck." You're back where you started — with prettier raw material and no system.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SOLUTION -->
+<!-- WHAT'S INCLUDED IN YOUR FREE AUDIT -->
 <section id="how">
   <div class="section-inner">
-    <div class="section-label">The Fix</div>
-    <h2 class="section-title">A photoshoot is not the product. A system is.</h2>
-    <p class="section-sub">We don't sell edited photos. We sell a personal brand in image form. Here's what the free audit covers:</p>
+    <div class="section-label">Your Free Audit Includes</div>
+    <h2 class="section-title">Everything you need to fix your photos. Free.</h2>
+    <p class="section-sub">This isn't a teaser or a "free consultation." You get a full, personalized audit with actionable feedback you can use immediately — whether we ever work together or not.</p>
     <div class="solution-list">
       <div class="solution-step">
         <div>
-          <h3>We audit your current photos across every platform</h3>
-          <p>Instagram, dating profiles, LinkedIn — we look at what you have and diagnose exactly what's killing your visual presence. No vague feedback. Specific, actionable gaps.</p>
+          <h3>Full Profile Teardown Across Every Platform</h3>
+          <p>We review your Instagram, dating profiles, and LinkedIn — then send you a detailed breakdown of exactly what's working, what's killing your visual presence, and why. No vague feedback. Specific, numbered gaps you can point to.</p>
         </div>
       </div>
       <div class="solution-step">
         <div>
-          <h3>We identify your archetype</h3>
-          <p>Before anyone picks up a camera, you need to know who you are online. The frame decides everything: fits, locations, poses, captions. We define yours in the audit.</p>
+          <h3>Your Archetype Discovery</h3>
+          <p>Before anyone picks up a camera, you need to know who you are online. We define your archetype — the frame that decides every fit, location, pose, and caption. This alone changes how you see every photo you take from now on.</p>
         </div>
       </div>
       <div class="solution-step">
         <div>
-          <h3>We map your "looks" — not your photo count</h3>
-          <p>The unit of a personal brand is the look: 1 location × 1 outfit. Three looks beats 50 pics from one afternoon every time. We'll show you exactly how many looks you need for your goals.</p>
+          <h3>Your Personal "Looks" Map</h3>
+          <p>The unit of a personal brand is the look: 1 location × 1 outfit. We map out exactly how many looks you need for your specific goals, what to wear for each one, and where to shoot them. Three planned looks beats 50 random pics every time.</p>
         </div>
       </div>
       <div class="solution-step">
         <div>
-          <h3>You get a custom action plan</h3>
-          <p>Walk away knowing exactly what to shoot, what to wear, where to shoot it, and how to post it for 30 days of content. Whether you work with us or not, the plan is yours free.</p>
+          <h3>The Prep Protocol Checklist</h3>
+          <p>A two-week checklist so you show up at your visual peak: grooming, skin, haircut timing, and a physique peak-day protocol. You look the best you've ever looked — on schedule, not by accident.</p>
+        </div>
+      </div>
+      <div class="solution-step">
+        <div>
+          <h3>Your 30-Day Posting Roadmap</h3>
+          <p>You get a month-by-month plan: what to post first, where to post it, how each look stretches across feed, stories, dating profile, and LinkedIn. Your photos work as a system, not a pile.</p>
+        </div>
+      </div>
+      <div class="solution-step">
+        <div>
+          <h3>Profile Order & Bio Recommendations</h3>
+          <p>We rebuild your profile sequence and bio around your new shots. The order people see your photos in matters as much as the photos themselves. You get the exact order to use.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- VALUE STACK PREVIEW -->
-<section class="stack-section">
+<!-- WHAT YOU WALK AWAY WITH -->
+<section class="value-section">
   <div class="section-inner">
-    <div class="section-label">What You Get If You Book</div>
-    <h2 class="section-title">One afternoon. Thirty days of presence.</h2>
-    <p class="section-sub">If the audit convinces you, here's what the full system looks like — every element kills one specific reason your photos have failed:</p>
-    <div class="stack-grid">
-      <div class="stack-item">
-        <div class="stack-icon">🎭</div>
-        <div class="stack-content">
-          <h4>Archetype Discovery Session</h4>
-          <p>Who you are online, decided before the shoot.</p>
+    <div class="section-label">What You Walk Away With</div>
+    <h2 class="section-title">A complete personal brand photo system. Yours to keep.</h2>
+    <p class="section-sub">After your free audit, you'll have everything below — written, personalized, and ready to act on:</p>
+    <div class="value-grid">
+      <div class="value-item">
+        <div class="value-icon">📋</div>
+        <div class="value-content">
+          <h4>Written Audit Report</h4>
+          <p>A detailed PDF covering every platform, every gap, and every fix — personalized to your photos, your goals, and your current presence.</p>
         </div>
-        
       </div>
-      <div class="stack-item">
-        <div class="stack-icon">💪</div>
-        <div class="stack-content">
-          <h4>The Prep Protocol</h4>
-          <p>Show up at your visual peak. Grooming, skin, haircut timing, physique.</p>
+      <div class="value-item">
+        <div class="value-icon">🎭</div>
+        <div class="value-content">
+          <h4>Your Defined Archetype</h4>
+          <p>The specific identity that drives every visual decision. You'll never wonder "does this fit me?" again — you'll know instantly.</p>
         </div>
-        
       </div>
-      <div class="stack-item">
-        <div class="stack-icon">🗺️</div>
-        <div class="stack-content">
-          <h4>Your Shot Map</h4>
-          <p>Every location, fit, and pose decided before shoot day.</p>
+      <div class="value-item">
+        <div class="value-icon">🗺️</div>
+        <div class="value-content">
+          <h4>Custom Looks Map</h4>
+          <p>Exactly what to shoot, what to wear, and where — numbered, sequenced, and tailored to your goals. Take it to any photographer or use it yourself.</p>
         </div>
-        
       </div>
-      <div class="stack-item">
-        <div class="stack-icon">📸</div>
-        <div class="stack-content">
-          <h4>The Shoot: 3 Looks</h4>
-          <p>Up to 3 locations. We direct everything. You just show up.</p>
+      <div class="value-item">
+        <div class="value-icon">💪</div>
+        <div class="value-content">
+          <h4>Prep Protocol</h4>
+          <p>The two-week checklist that peaks your appearance for shoot day. Grooming, skin, haircut timing, physique — all scheduled.</p>
         </div>
-        
       </div>
-      <div class="stack-item">
-        <div class="stack-icon">✨</div>
-        <div class="stack-content">
-          <h4>Pro Edits on Every Final</h4>
-          <p>Skin, color, light. Natural, never uncanny. Every shot postable.</p>
+      <div class="value-item">
+        <div class="value-icon">📅</div>
+        <div class="value-content">
+          <h4>30-Day Posting Plan</h4>
+          <p>A content calendar that sequences your looks across every platform. No more posting randomly and hoping something lands.</p>
         </div>
-        
       </div>
-      <div class="stack-item">
-        <div class="stack-icon">📅</div>
-        <div class="stack-content">
-          <h4>30-Day Posting Map</h4>
-          <p>What to post first, where, and how each look stretches across platforms.</p>
+      <div class="value-item">
+        <div class="value-icon">✅</div>
+        <div class="value-content">
+          <h4>Profile Rebuild Guide</h4>
+          <p>The exact order to arrange your photos, what your bio should say, and how to make the whole profile work as one system.</p>
         </div>
-        
-      </div>
-      <div class="stack-item">
-        <div class="stack-icon">🔄</div>
-        <div class="stack-content">
-          <h4>Profile Teardown & Rebuild</h4>
-          <p>Your profile order and bio, rebuilt around the new shots as a system.</p>
-        </div>
-        
       </div>
     </div>
-    <p style="text-align:center; margin-top:24px; font-size:15px; color:var(--text-muted);">
-      Seven elements. One system. Every piece solves a specific reason your photos have failed.<br>
-      <span style="font-size:13px; color:var(--text-dim);">Full pricing revealed on your audit call — value built first, numbers second.</span>
-    </p>
   </div>
 </section>
 
 <!-- SOCIAL PROOF -->
 <section class="social-proof">
   <div class="section-inner">
-    <div class="section-label">Why Trust This</div>
-    <h2 class="section-title">Built by people who do this for a living</h2>
+    <div class="section-label">By The Numbers</div>
+    <h2 class="section-title">A system that actually works</h2>
     <div class="proof-stats">
       <div class="stat">
-        <div class="stat-num">7</div>
-        <div class="stat-label">System Elements</div>
+        <div class="stat-num">6</div>
+        <div class="stat-label">Deliverables In Your Audit</div>
       </div>
       <div class="stat">
         <div class="stat-num">3</div>
-        <div class="stat-label">Looks, Not 50 Pics</div>
+        <div class="stat-label">Looks Beats 50 Pics</div>
       </div>
       <div class="stat">
-        <div class="stat-num">100%</div>
-        <div class="stat-label">Reshoot Guarantee</div>
+        <div class="stat-num">24h</div>
+        <div class="stat-label">Turnaround Time</div>
       </div>
       <div class="stat">
-        <div class="stat-num">1</div>
-        <div class="stat-label">Afternoon. That's It.</div>
+        <div class="stat-num">$0</div>
+        <div class="stat-label">Cost To You</div>
       </div>
     </div>
   </div>
@@ -538,15 +528,15 @@
   <div class="section-inner">
     <div class="audit-box">
       <h2>Get Your Free Photo Audit</h2>
-      <p class="sub">Tell us where to look. We'll send your audit within 24 hours — no cost, no commitment, no credit card.</p>
+      <p class="sub">Tell us where to look. We'll send your complete audit within 24 hours — free, personalized, and yours to keep.</p>
 
       <form id="audit-form" onsubmit="return handleSubmit(event)">
         <div class="form-group">
           <label for="name">Your Name</label>
-          <input type="text" id="name" name="name" class="form-input" placeholder="Fahad Rahman" required>
+          <input type="text" id="name" name="name" class="form-input" placeholder="Your name" required>
         </div>
         <div class="form-group">
-          <label for="email">Email (for your audit report)</label>
+          <label for="email">Email (we'll send your audit here)</label>
           <input type="email" id="email" name="email" class="form-input" placeholder="you@email.com" required>
         </div>
         <div class="form-group">
@@ -579,7 +569,7 @@
           <svg viewBox="0 0 20 20" fill="currentColor"><path d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.2 3.2 6.8-6.8a1 1 0 011.4 0z"/></svg>
         </div>
         <h3>You're in. Audit incoming.</h3>
-        <p>Check your email within 24 hours. We'll send your personalized photo audit and action plan — completely free.</p>
+        <p>Check your email within 24 hours. Your personalized photo audit and action plan are on the way — completely free.</p>
       </div>
     </div>
   </div>
@@ -593,27 +583,27 @@
     <div class="faq-list">
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q">Is the audit actually free? <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.5 7.5L10 12l4.5-4.5"/></svg></div>
-        <div class="faq-a">Yes. 100% free, no credit card, no obligation. We'll review your photos, send you a written audit, and if it's not a fit, we'll point you to a cheaper alternative. The audit is valuable whether you book with us or not.</div>
+        <div class="faq-a">Yes. 100% free, no credit card, no catch. You get a full written audit with personalized feedback, a custom looks map, a prep protocol, and a 30-day posting plan. It's yours to keep and use however you want.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">What exactly do I get? <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.5 7.5L10 12l4.5-4.5"/></svg></div>
+        <div class="faq-a">A written audit report covering every platform you're on, your defined archetype, a custom looks map (what to shoot, wear, and where), a two-week prep protocol, a 30-day posting roadmap, and profile order & bio recommendations. All personalized to you, all delivered within 24 hours.</div>
       </div>
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q">Why only 1-3 photos per look? <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.5 7.5L10 12l4.5-4.5"/></svg></div>
-        <div class="faq-a">Because a folder of 40 near-duplicates is what you already tried. Every photo we hand you is a different version of you — edited, sequenced, ready to post. Quality of looks over quantity of files is the product. The only way to get more photos is to buy more looks, not more edits of the same one.</div>
+        <div class="faq-a">Because a folder of 40 near-duplicates is what you already tried. Every photo in your audit-recommended looks is a different version of you — edited, sequenced, ready to post. Quality of looks over quantity of files. Three planned looks outperform fifty pics from one afternoon every time.</div>
       </div>
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q">What if I'm not photogenic? <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.5 7.5L10 12l4.5-4.5"/></svg></div>
-        <div class="faq-a">Nobody is photogenic unprompted. Models are directed. The Shot Map decides every pose and angle before shoot day — awkwardness is a planning failure, not a face failure. You'll never stand there wondering what to do with your hands.</div>
+        <div class="faq-a">Nobody is photogenic unprompted. Models are directed. Your looks map decides every pose and angle before shoot day — awkwardness is a planning failure, not a face failure. You'll never stand there wondering what to do with your hands.</div>
       </div>
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q">What if I'm not in shape yet? <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.5 7.5L10 12l4.5-4.5"/></svg></div>
-        <div class="faq-a">The Prep Protocol peaks what you already have in two weeks — grooming, skin, haircut timing, and a physique peak-day protocol. The shoot is the shortcut to looking like the guy who has his life together, not the reward for it.</div>
-      </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q">What's the guarantee? <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.5 7.5L10 12l4.5-4.5"/></svg></div>
-        <div class="faq-a">If you don't get at least one shot per look you would proudly post, we reshoot a full look free — you pick the location. We promise work, not outcomes we don't control. No promised matches, followers, or clients — just photos you're proud to post.</div>
+        <div class="faq-a">The Prep Protocol peaks what you already have in two weeks — grooming, skin, haircut timing, and a physique peak-day protocol. A shoot is the shortcut to looking like the guy who has his life together, not the reward for being him.</div>
       </div>
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q">Where are you based? <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.5 7.5L10 12l4.5-4.5"/></svg></div>
-        <div class="faq-a">Montreal. We shoot across the city's best locations — three ordinary Montreal spots read as a full, varied life when the looks are planned. Remote audits are available anywhere.</div>
+        <div class="faq-a">Montreal. We shoot across the city's best locations — three ordinary Montreal spots read as a full, varied life when the looks are planned. Audits are available anywhere remotely.</div>
       </div>
     </div>
   </div>
@@ -622,13 +612,13 @@
 <!-- FINAL CTA -->
 <section class="final-cta">
   <h2>Stop guessing. Start looking like yourself.</h2>
-  <p>Your free audit takes 60 seconds to request and gives you a full action plan within 24 hours.</p>
+  <p>Your free audit takes 60 seconds to request and gives you a complete action plan within 24 hours.</p>
   <a href="#audit" class="btn-primary">Get My Free Audit →</a>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <p>Personal Brand Shoots · Montreal, QC · Built with ⚡</p>
+  <p>Personal Brand Shoots · Montreal, QC</p>
 </footer>
 
 <script>
@@ -658,15 +648,12 @@
       timestamp: new Date().toISOString()
     };
 
-    // Submit to Formspree (placeholder — will be wired up)
-    fetch('https://formspree.io/f/placeholder', {
+    // Submit to serverless endpoint
+    fetch('/api/audit', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
-    }).catch(() => {
-      // Even if the endpoint isn't wired, show success
-      // The form still collects data and can be retrieved
-    }).finally(() => {
+    }).catch(() => {}).finally(() => {
       form.style.display = 'none';
       success.classList.add('show');
     });
